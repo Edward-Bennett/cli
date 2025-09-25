@@ -71,7 +71,7 @@ def test_lazy_choices_help():
     )
 
     # Parser setup: traditionally does not call the getter (lazy evaluation)
-    if sys.version_info >= (3, 13):
+    if sys.version_info[:2] >= (3, 13):
         assert getter.call_count <= 1
         getter.reset_mock()
     else:
@@ -79,7 +79,7 @@ def test_lazy_choices_help():
 
     # Parsing without --help should not trigger the getter
     parser.parse_args([])
-    if sys.version_info >= (3, 13):
+    if sys.version_info[:2] >= (3, 13):
         assert getter.call_count <= 1
         getter.reset_mock()
     else:
